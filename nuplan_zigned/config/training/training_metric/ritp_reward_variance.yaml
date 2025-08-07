@@ -1,3 +1,0 @@
-reward_variance:
-  _target_: nuplan_zigned.training.modeling.metrics.ritp_reward_metrics.RewardVariance
-  _convert_: 'all'

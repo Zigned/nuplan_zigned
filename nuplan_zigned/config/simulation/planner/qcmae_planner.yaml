@@ -1,6 +1,0 @@
-qcmae_planner:
-  _target_: nuplan_zigned.simulation.planner.qcmae_planner.QCMAEPlanner
-  _convert_: 'all'
-
-  model_config: ${model}  # Dictionary key from existing planner model config (e.g. raster_model)
-  checkpoint_path: ???

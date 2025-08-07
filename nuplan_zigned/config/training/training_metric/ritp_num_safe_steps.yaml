@@ -1,3 +1,0 @@
-num_safe_steps:
-  _target_: nuplan_zigned.training.modeling.metrics.ritp_reward_metrics.NumSafeSteps
-  _convert_: 'all'

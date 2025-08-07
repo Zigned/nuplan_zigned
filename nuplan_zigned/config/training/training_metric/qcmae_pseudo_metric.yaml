@@ -1,3 +1,0 @@
-pseudo_metric:
-  _target_: nuplan_zigned.training.modeling.metrics.qcmae_pseudo_metric.PseudoMetric
-  _convert_: 'all'

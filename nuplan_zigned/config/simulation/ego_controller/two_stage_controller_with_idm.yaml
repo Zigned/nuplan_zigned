@@ -1,6 +1,0 @@
-_target_: nuplan_zigned.simulation.controller.two_stage_controller_with_idm.TwoStageController
-_convert_: 'all'
-
-defaults:
-  - tracker: lqr_tracker_with_idm
-  - motion_model: kinematic_bicycle_model

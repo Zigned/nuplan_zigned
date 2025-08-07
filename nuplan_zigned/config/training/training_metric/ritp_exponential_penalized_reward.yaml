@@ -1,3 +1,0 @@
-exponential_penalized_reward:
-  _target_: nuplan_zigned.training.modeling.metrics.ritp_reward_metrics.ExponentialPenalizedReward
-  _convert_: 'all'
