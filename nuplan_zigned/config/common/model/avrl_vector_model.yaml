@@ -1,0 +1,100 @@
+_target_: nuplan_zigned.training.modeling.models.avrl_vector_rewardformer.RewardFormer
+_convert_: 'all'
+model_name: avrl_vector_reward
+model_params:
+  _target_: nuplan_zigned.training.modeling.models.avrl_vector_rewardformer.RewardFormerParams
+  _convert_: 'all'
+  dropout: 0.1
+  sigma_prior: 1.
+  num_training_scenarios: 6033
+  batch_size: ${data_loader.params.batch_size}
+  num_poses: ${model.future_trajectory_sampling.num_poses}
+  input_dim: 2
+  hidden_dim: 64
+  num_freq_bands: 64
+  num_layers: 1
+  num_heads: 8
+  head_dim: 16
+  only_ego_attends_map: false
+  gated_attention: true
+  gate_has_dropout: false
+  estimate_u_r_stats: false
+  validate: false
+  simulate: false
+  num_samples: 10
+  lambda_u_r: 1.5  # used for validating
+  precision_tau: 1.
+  model_dir: null
+  u_r_stats_dir: null
+  gpus: ${lightning.trainer.params.gpus}
+
+# Parameters for predicted trajectory
+future_trajectory_sampling:
+  _target_: nuplan.planning.simulation.trajectory.trajectory_sampling.TrajectorySampling
+  _convert_: 'all'
+  num_poses: 10      # number of poses in trajectory in addition to initial state
+  time_horizon: 4.0  # [s] time horizon of all poses
+
+# Params for features
+feature_params:
+  _target_: nuplan_zigned.training.modeling.models.avrl_vector_rewardformer.RewardFormerFeatureParams
+  _convert_: 'all'
+  feature_types:
+    NONE: -1
+    EGO: 0
+    VEHICLE: 1
+    BICYCLE: 2
+    PEDESTRIAN: 3
+    LANE: 4
+    STOP_LINE: 5
+    CROSSWALK: 6
+    LEFT_BOUNDARY: 7
+    RIGHT_BOUNDARY: 8
+    ROUTE_LANES: 9
+    TRAFFIC_CONE: 10
+    BARRIER: 11
+    CZONE_SIGN: 12
+    GENERIC_OBJECT: 13
+  total_max_points: 20
+  feature_dimension: 8
+  # Agent features
+  agent_features: [VEHICLE, PEDESTRIAN, BICYCLE, TRAFFIC_CONE, BARRIER, CZONE_SIGN, GENERIC_OBJECT]
+  ego_dimension: 3
+  agent_dimension: 8
+  max_agents:
+    VEHICLE: 30
+    PEDESTRIAN: 30
+    BICYCLE: 30
+    TRAFFIC_CONE: 30
+    BARRIER: 30
+    CZONE_SIGN: 30
+    GENERIC_OBJECT: 10
+  # Map features
+  map_features: [LANE, LEFT_BOUNDARY, RIGHT_BOUNDARY, STOP_LINE, CROSSWALK, ROUTE_LANES]
+  max_elements:
+    LANE: 20
+    LEFT_BOUNDARY: 20
+    RIGHT_BOUNDARY: 20
+    STOP_LINE: 10
+    CROSSWALK: 10
+    ROUTE_LANES: 20
+  max_points:
+    LANE: 10
+    LEFT_BOUNDARY: 10
+    RIGHT_BOUNDARY: 10
+    STOP_LINE: 10
+    CROSSWALK: 10
+    ROUTE_LANES: 10
+  vector_set_map_feature_radius: 20    # [m] The query radius scope relative to the current ego-pose.
+  interpolation_method: linear
+  disable_map: False
+  disable_agents: False
+
+  num_poses: ${model.future_trajectory_sampling.num_poses}      # number of poses in trajectory in addition to initial state
+  time_horizon: ${model.future_trajectory_sampling.time_horizon}  # [s] time horizon of all poses
+  frenet_radius: 100.0    # [m] The minimum query radius scope relative to the current ego-pose. Used when building Frenet frame. Will be adjusted according to speed.
+
+target_builders:
+  - _target_: nuplan.planning.training.preprocessing.target_builders.ego_trajectory_target_builder.EgoTrajectoryTargetBuilder
+    _convert_: 'all'
+    future_trajectory_sampling: ${model.future_trajectory_sampling}

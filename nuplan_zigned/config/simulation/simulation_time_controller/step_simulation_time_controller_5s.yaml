@@ -1,0 +1,2 @@
+_target_: nuplan_zigned.simulation.simulation_time_controller.step_simulation_time_controller_5s.StepSimulationTimeController
+_convert_: 'all'

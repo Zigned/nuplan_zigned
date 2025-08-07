@@ -1,0 +1,6 @@
+ritp_planner:
+  _target_: nuplan_zigned.simulation.planner.ritp_planner.RITPPlanner
+  _convert_: 'all'
+
+  model_config: ${model}  # Dictionary key from existing planner model config (e.g. raster_model)
+  checkpoint_path: ???

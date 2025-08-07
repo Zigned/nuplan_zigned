@@ -1,0 +1,19 @@
+# @package _global_
+job_name: qcmae
+py_func: train
+objective_aggregate_mode: mean
+
+defaults:
+  - override /data_augmentation:
+  - override /objective:
+      - qcmae_agents_imitation_objective
+  - override /splitter: nuplan
+  - override /model: qcmae
+  - override /scenario_filter: training_scenarios
+  - override /training_metric:
+      - qcmae_Brier
+      - qcmae_minADE
+      - qcmae_minAHE
+      - qcmae_minFDE
+      - qcmae_minFHE
+      - qcmae_MR
