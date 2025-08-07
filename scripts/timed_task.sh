@@ -1,0 +1,1 @@
+echo "taskset -c 4-47 python simulate_ritp_planner.py >> simulation_test-1.log 2>&1" | at 00:30 tomorrow

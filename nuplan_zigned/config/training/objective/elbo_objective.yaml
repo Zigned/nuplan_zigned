@@ -1,0 +1,4 @@
+elbo_objective:
+  _target_: nuplan_zigned.training.modeling.objectives.elbo_objective.ELBOObjective
+  _convert_: 'all'
+  base: 1.5

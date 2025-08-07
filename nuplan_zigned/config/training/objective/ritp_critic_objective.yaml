@@ -1,0 +1,3 @@
+ritp_critic_objective:
+  _target_: nuplan_zigned.training.modeling.objectives.ritp_critic_objective.CriticObjective
+  _convert_: 'all'

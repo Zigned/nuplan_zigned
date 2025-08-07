@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: nuplan-zigned
+Version: 1.0.0
+Summary: Author's PyTorch implementation of Reinforced Imitative Trajectory Planning for Urban Automated Driving.
+Home-page: https://github.com/Zigned/nuplan_zigned
+Author: Zigned @ Chongqing University
+Author-email: zigned@qq.com
+License: apache-2.0
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Classifier: License :: Free for non-commercial use
+Requires-Python: >=3.9,<3.10
+License-File: LICENSE
+
+UNKNOWN
+

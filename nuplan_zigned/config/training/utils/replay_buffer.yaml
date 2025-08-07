@@ -1,0 +1,8 @@
+replay_buffer:
+  _target_: nuplan_zigned.utils.replay_buffer.ReplayBuffer
+  _convert_: 'all'
+  max_size: 1e4
+  batch_size: ${model.ritp_planner_model_params.batch_size}
+  load_dir: null
+  save_dir: null
+#  device: ${lightning.trainer.params.gpus}

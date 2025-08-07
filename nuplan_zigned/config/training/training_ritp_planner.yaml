@@ -1,0 +1,29 @@
+# @package _global_
+job_name: ritp_planner
+py_func: train
+objective_aggregate_mode: mean
+
+defaults:
+  - /utils:
+    - replay_buffer
+    - env
+  - /ego_controller:
+      - two_stage_controller
+  - override /data_augmentation:
+  - override /objective:
+      - ritp_actor_objective
+      - ritp_critic_objective
+  - override /splitter: nuplan
+  - override /model: ritp_planner
+  - override /scenario_filter: training_scenarios
+  - override /training_metric:
+      - ritp_Brier
+      - ritp_minADE
+      - ritp_minAHE
+      - ritp_minFDE
+      - ritp_minFHE
+      - ritp_MR
+      - ritp_num_safe_steps
+      - ritp_reward_mean
+      - ritp_reward_variance
+      - ritp_exponential_penalized_reward

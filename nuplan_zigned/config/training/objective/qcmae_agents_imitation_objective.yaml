@@ -1,0 +1,19 @@
+qcmae_agents_imitation_objective:
+  _target_: nuplan_zigned.training.modeling.objectives.qcmae_agents_imitation_objective.AgentsImitationObjective
+  _convert_: 'all'
+  name: agent_imitation_objective
+  weight: 1.
+  output_dim: ${model.model_params.output_dim}
+  output_head: ${model.model_params.output_head}
+  num_past_steps: ${model.feature_params.past_trajectory_sampling.num_poses}
+  self_distillation: ${model.model_params.self_distillation}
+  sd_temperature: ${model.model_params.sd_temperature}
+  sd_alpha: ${model.model_params.sd_alpha}
+  sd_margin: ${model.model_params.sd_margin}
+  pretrain: ${model.model_params.pretrain}
+  pretrain_map_encoder: ${model.model_params.pretrain_map_encoder}
+  pretrain_agent_encoder: ${model.model_params.pretrain_agent_encoder}
+  prob_pretrain_mask: ${model.model_params.prob_pretrain_mask}
+  prob_pretrain_mask_mask: ${model.model_params.prob_pretrain_mask_mask}
+  prob_pretrain_mask_random: ${model.model_params.prob_pretrain_mask_random}
+  prob_pretrain_mask_unchanged: ${model.model_params.prob_pretrain_mask_unchanged}
